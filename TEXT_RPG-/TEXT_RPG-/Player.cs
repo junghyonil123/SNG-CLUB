@@ -23,6 +23,29 @@ namespace TEXT_RPG
         public int max_exp = 10;
         public int current_exp = 0;
 
+        List<Item> inventory = new List<Item>();
+
+        public void get_item(Item _itme)
+        {
+            inventory.Add(_itme);
+        }
+
+        public void open_inven()
+        {
+            if(inventory.Count == 0)
+            {
+                Console.WriteLine("인벤토리가 비어있습니다.");
+                Console.ReadLine();
+                Console.Clear();
+            }
+
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                Console.WriteLine("아이템의 이름 :" + inventory[i].name + "     능력치 : " + inventory[i].status);
+            }
+        }
+
+
         public void information()
         {
             Console.WriteLine("==============================================");

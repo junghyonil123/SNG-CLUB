@@ -40,8 +40,6 @@ namespace TEXT_RPG
 
             Console.ReadLine();
             Console.Clear();
-            information();
-            player.information();
         }
     }
 
