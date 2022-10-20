@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rigidbody;
-
+    public MainCanvas mainCanvas;
 
     void Start()
     {
@@ -30,8 +30,30 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)// 물체와 닿을때 실행되는 함수
     {
-        rigidbody.velocity = Vector2.zero;
-        rigidbody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-        isCanAddForce = true;
+
+        if (collision.gameObject.tag == "Floor")
+        {
+            Debug.Log("바닥임");
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            isCanAddForce = true;
+        }
+
+        if (collision.gameObject.tag == "DieZone")
+        {
+            Destroy(gameObject);
+            mainCanvas.Ending();
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Star")
+        {
+            //별을 먹었음.
+            Destroy(collision.gameObject);
+            mainCanvas.starCount += 1;
+        }
     }
 }

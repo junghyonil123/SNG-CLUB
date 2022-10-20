@@ -8,7 +8,12 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     { //카메라의 위치 = 플레이어의 위치
-        transform.position = player.transform.position;
-        transform.position -= new Vector3(0, 0, 1);
+        
+        if (player != null)
+        {
+            //카메라의 위치
+            transform.position = new Vector3(player.transform.position.x, 0, 0);
+            transform.position -= new Vector3(0, 0, 1);
+        }
     }
 }
